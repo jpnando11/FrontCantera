@@ -5,6 +5,7 @@ import AppLayout from './layout/AppLayout'
 import EstudiantePage from './page/EstudiantePage'
 import RegistrarCurso from './page/RegistrarCursoPage'
 import CursoIncribirsePage from './page/CursoIncribirsePage'
+import EventosPage from './page/EventosPage'; 
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
             <Route path='/curso' element={<RegistrarCurso />} />
             <Route path='/estudiante' element={<EstudiantePage />} />
             <Route path='/incribir/:id_curso' element={<CursoIncribirsePage />} />
+            <Route path='/eventos' element={<EventosPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
