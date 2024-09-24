@@ -22,13 +22,15 @@ const ListEstudiante = () => {
     if (isLoading) return '...Loading'
 
 
-
+    if (data?.length != undefined && data.length <= 0) {
+        return <p className='mt-10 text-center text-2xl text-gray-600 font-bold'>No hay estudiantes</p>
+    }
 
     return (
         <>
             <ToastContainer />
             <p className='mt-10 text-center text-2xl text-gray-800 uppercase font-semibold'>Incribir Estudiante</p>
-            < table className="bg-white w-10/12 m-auto mt-10 border border-gray-300" >
+            < table className="bg-white w-10/12 m-auto mt-10 border border-gray-300 mb-10" >
                 <thead>
                     <tr className="w-full bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                         <th className="py-3 px-6 text-left">Nombre</th>
