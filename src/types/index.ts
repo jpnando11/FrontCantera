@@ -31,6 +31,14 @@ export interface Inscripciones {
     id_Curso: number
 }
 
+export interface Payment {
+    id: number;
+    date: string;
+    amount: number;
+    status: string;
+  }
+  
+
 
 
 
