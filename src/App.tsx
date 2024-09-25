@@ -5,7 +5,10 @@ import AppLayout from './layout/AppLayout'
 import EstudiantePage from './page/EstudiantePage'
 import RegistrarCurso from './page/RegistrarCursoPage'
 import CursoIncribirsePage from './page/CursoIncribirsePage'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import EventosPage from './page/EventosPage'; 
+
 
 const App = () => {
   return (
@@ -23,6 +26,7 @@ const App = () => {
           </Route>
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </>
   )
 }

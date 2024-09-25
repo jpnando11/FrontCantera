@@ -1,57 +1,85 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import { Evento } from "../../types";
 
 interface EditarEventoModalProps {
   isOpen: boolean;
   onClose: () => void;
-  evento: any;
-  onGuardar: (eventoEditado: any) => void;
+  evento?: Evento | null;
+  onGuardar: (eventoEditado: Evento) => Promise<void>;
+  onEliminar: (id: string) => Promise<void>;
 }
 
-const EditarEventoModal: React.FC<EditarEventoModalProps> = ({ isOpen, onClose, evento, onGuardar }) => {
-  const [titulo, setTitulo] = useState('');
-  const [fecha, setFecha] = useState('');
-  const [hora, setHora] = useState('');
+const EditarEventoModal: React.FC<EditarEventoModalProps> = ({
+  isOpen,
+  onClose,
+  evento,
+  onGuardar,
+  onEliminar,
+}) => {
+  const [titulo, setTitulo] = useState("");
+  const [fecha, setFecha] = useState("");
+  const [hora, setHora] = useState("");
+  const [lugar, setLugar] = useState("");
+  const [descripcion, setDescripcion] = useState("");
 
   useEffect(() => {
     if (evento) {
-      setTitulo(evento.title || '');
-      setFecha(evento.start ? evento.start.toISOString().substring(0, 10) : '');
-      setHora(evento.start ? evento.start.toISOString().substring(11, 16) : '');
+      setTitulo(evento.title || "");
+      setFecha(evento.start.toISOString().slice(0, 10));
+      setHora(evento.start.toISOString().slice(11, 16));
+      setLugar(evento.lugar || "");
+      setDescripcion(evento.description || "");
     }
   }, [evento]);
 
-  const handleGuardarEvento = () => {
-    const eventoEditado = {
-      ...evento,
-      title: titulo,
-      start: new Date(`${fecha}T${hora}`),
-      end: new Date(`${fecha}T${hora}`),
-    };
-    onGuardar(eventoEditado);  // Actualiza el evento
-    onClose();  // Cierra el modal
+  const handleGuardar = async () => {
+    if (evento) {
+      const eventoEditado: Evento = {
+        ...evento,
+        title: titulo,
+        start: new Date(fecha + "T" + hora),
+        lugar,
+        description: descripcion,
+      };
+      await onGuardar(eventoEditado);
+    }
   };
 
-  if (!isOpen) return null;
-
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <h2>Editar Evento</h2>
-        <label>
-          Título:
-          <input type="text" value={titulo} onChange={(e) => setTitulo(e.target.value)} />
-        </label>
-        <label>
-          Fecha:
-          <input type="date" value={fecha} onChange={(e) => setFecha(e.target.value)} />
-        </label>
-        <label>
-          Hora:
-          <input type="time" value={hora} onChange={(e) => setHora(e.target.value)} />
-        </label>
-        <button onClick={handleGuardarEvento}>Guardar</button>
-        <button onClick={onClose}>Cancelar</button>
-      </div>
+    <div>
+      {isOpen && (
+        <div>
+          <h2>Editar Evento</h2>
+          <input
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
+            placeholder="Título"
+          />
+          <input
+            type="date"
+            value={fecha}
+            onChange={(e) => setFecha(e.target.value)}
+          />
+          <input
+            type="time"
+            value={hora}
+            onChange={(e) => setHora(e.target.value)}
+          />
+          <input
+            value={lugar}
+            onChange={(e) => setLugar(e.target.value)}
+            placeholder="Lugar"
+          />
+          <textarea
+            value={descripcion}
+            onChange={(e) => setDescripcion(e.target.value)}
+            placeholder="Descripción"
+          />
+          <button onClick={handleGuardar}>Guardar</button>
+          <button onClick={onClose}>Cerrar</button>
+          <button onClick={() => onEliminar(evento?.id || "")}>Eliminar</button>
+        </div>
+      )}
     </div>
   );
 };
