@@ -7,13 +7,14 @@ interface a {
 
 const ComponentCurso = ({ curso }: a) => {
 
-    const { nombre_curso, costo_curso, id_curso } = curso;
+    const { nombre_curso, costo_curso, nivel_categorias, id_curso } = curso;
     return (
         <div className="flex justify-center">
-            <div className="bg-custom-curso w-1/2 h-32 flex flex-col justify-end items-center p-5 rounded-lg">
-                <p>Curso: {nombre_curso}</p>
-                <p>costo: {costo_curso}</p>
-                <Link to={`incribir/${id_curso}`}>Ver curso</Link>
+            <div className="bg-custom-curso w-full flex flex-col justify-end items-center p-5 rounded-lg">
+                <p className="uppercase font-bold text-2xl">{nombre_curso}</p>
+                <p className="">{nivel_categorias}</p>
+                <p className="text-green-400 font-bold">${costo_curso}</p>
+                <Link className="text-blue-500 font-bold hover:text-blue-950" to={`incribir/${id_curso}`}>Ver curso</Link>
             </div>
         </div>
     )
