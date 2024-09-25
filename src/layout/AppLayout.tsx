@@ -36,6 +36,46 @@ const AppLayout = () => {
             <main className="w-11/12 m-auto h-full">
                 <div className="flex space-x-10">
 
+                    <aside className="py-4 w-1/4">
+                        <ul className="list-none">
+                            <li className="my-2">
+                                <NavLink to="/" className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block" : "py-2 ml-9 rounded-md px-3 w-full block"}>
+                                    Panel Administrador
+                                </NavLink>
+                            </li>
+                            <li className="my-2">
+                                <NavLink to="/eventos" className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block" : "py-2 ml-9 rounded-md px-3 w-full block"}>
+                                    Eventos
+                                </NavLink>
+                            </li>
+                            <li className="my-2">
+                                <NavLink to="/curso" className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block" : "py-2 ml-9 rounded-md px-3 w-full block"}>
+                                    Curso
+                                </NavLink>
+                            </li>
+                            <li className="my-2">
+                                <NavLink to="/estudiante" className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block" : "py-2 ml-9 rounded-md px-3 w-full block"}>
+                                    Estudiante
+                                </NavLink>
+                            </li>
+                            <li className="my-2">
+                                <NavLink to="/pagos" className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block" : "py-2 ml-9 rounded-md px-3 w-full block"}>
+                                    Pagos
+                                </NavLink>
+                            </li>
+                            <li className="my-2">
+                                <NavLink to="/reportes" className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block" : "py-2 ml-9 rounded-md px-3 w-full block"}>
+                                    Reportes
+                                </NavLink>
+                            </li>
+                            <li className="my-2">
+                                <NavLink to="/informes" className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block" : "py-2 ml-9 rounded-md px-3 w-full block"}>
+                                    Informes
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </aside>
+
                     <aside className="py-4 w-1/4 ">
                         <li className="list-none">
                             <NavLink to="/" className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block font-semibold" : "py-2 ml-9 rounded-md px-3 w-full block font-semibold"}>
@@ -91,7 +131,7 @@ const AppLayout = () => {
                 </div>
             </main>
         </>
-    )
+    );
 }
 
-export default AppLayout
+export default AppLayout;
