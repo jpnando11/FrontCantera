@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-import { NavLink, Outlet } from "react-router-dom";
-=======
 import { Navigate, NavLink, Outlet } from "react-router-dom"
 import { useAuth } from "../hooks/useAuth"
 import { useQueryClient } from "react-query";
 
->>>>>>> 268eff600e79b2844e1f41b7ef0186e29a6e47db
 
 const AppLayout = () => {
     const { error, isLoading } = useAuth();
@@ -40,7 +36,6 @@ const AppLayout = () => {
             <main className="w-11/12 m-auto h-full">
                 <div className="flex space-x-10">
 
-<<<<<<< HEAD
                     <aside className="py-4 w-1/4">
                         <ul className="list-none">
                             <li className="my-2">
@@ -81,7 +76,6 @@ const AppLayout = () => {
                         </ul>
                     </aside>
 
-=======
                     <aside className="py-4 w-1/4 ">
                         <li className="list-none">
                             <NavLink to="/" className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block font-semibold" : "py-2 ml-9 rounded-md px-3 w-full block font-semibold"}>
@@ -132,7 +126,6 @@ const AppLayout = () => {
                     </aside>
 
 
->>>>>>> 268eff600e79b2844e1f41b7ef0186e29a6e47db
                     <Outlet />
 
                 </div>
