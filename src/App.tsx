@@ -7,13 +7,17 @@ import RegistrarCurso from './page/RegistrarCursoPage'
 import CursoIncribirsePage from './page/CursoIncribirsePage'
 import PaymentHistoryPage from './page/PaymentHistoryPage';
 
+import AuthLogin from './layout/AuthLogin'
+import UsuarioPage from './page/UsuarioPage'
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/login' element={<LoginPage />} />
+          <Route element={<AuthLogin />}>
+            <Route path='/login' element={<LoginPage />} />
+          </Route>
 
           <Route element={<AppLayout />}>
             <Route path='/' element={<AdministraccionPage />} />
@@ -21,6 +25,7 @@ const App = () => {
             <Route path='/estudiante' element={<EstudiantePage />} />
             <Route path='/incribir/:id_curso' element={<CursoIncribirsePage />} />
             <Route path="/historial-pagos" element={<PaymentHistoryPage />} />
+            <Route path='/usuario' element={<UsuarioPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
