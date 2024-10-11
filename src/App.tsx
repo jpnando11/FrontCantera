@@ -5,9 +5,7 @@ import AppLayout from './layout/AppLayout'
 import EstudiantePage from './page/EstudiantePage'
 import RegistrarCurso from './page/RegistrarCursoPage'
 import CursoIncribirsePage from './page/CursoIncribirsePage'
-
 import EventosPage from './page/EventosPage'; 
-
 import AuthLogin from './layout/AuthLogin'
 import UsuarioPage from './page/UsuarioPage'
 

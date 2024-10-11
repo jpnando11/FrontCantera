@@ -33,12 +33,14 @@ export interface Inscripciones {
 
 
 export interface Evento {
-    id: string;
-    title: string;
-    start: Date;
-    end: Date;
-    description?: string;
+    id: number;
+    titulo: string;
+    fecha: string;
+    hora: string;
+    descripcion?: string;
     lugar?: string;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 
