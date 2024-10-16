@@ -5,6 +5,9 @@ import AppLayout from './layout/AppLayout'
 import EstudiantePage from './page/EstudiantePage'
 import RegistrarCurso from './page/RegistrarCursoPage'
 import CursoIncribirsePage from './page/CursoIncribirsePage'
+
+import EventosPage from './page/EventosPage'; 
+
 import AuthLogin from './layout/AuthLogin'
 import UsuarioPage from './page/UsuarioPage'
 import InformacionEstudiante from './page/InformacionEstudiante'
@@ -29,6 +32,7 @@ const App = () => {
             <Route path='/incribir/:id_curso' element={<CursoIncribirsePage />} />
             <Route path='/estudiante/:id_estudiante' element={<InformacionEstudiante />} />
             <Route path='/editarEstudiante' element={<EditarUsuario />} />
+            <Route path='/eventos' element={<EventosPage />} />
             <Route path='/usuario' element={<UsuarioPage />} />
             <Route path='/listEstudiantes' element={<LisAllUsuarioPage />} />
             <Route path='/maestro' element={<MaestroPage />} />
@@ -36,6 +40,7 @@ const App = () => {
           </Route>
         </Routes>
       </BrowserRouter>
+
     </>
   )
 }
