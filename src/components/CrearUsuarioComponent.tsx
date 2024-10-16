@@ -1,12 +1,14 @@
-import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form"
+import { FieldErrors, UseFormRegister } from "react-hook-form"
 import { Estudiante } from "../types"
 
 interface d {
     register: UseFormRegister<Estudiante>,
     errors: FieldErrors<Estudiante>,
-    rol: 'Estudiante' | 'Usuario',
+    rol: 'Estudiante' | 'Usuario' | 'Maestro',
+    actions: 'Crear' | 'Modificar',
+    estuadiante?: Estudiante
 }
-const CrearUsuarioComponent = ({ register, errors, rol }: d) => {
+const CrearUsuarioComponent = ({ register, errors, rol, estuadiante, actions }: d) => {
     return (
 
 
@@ -17,6 +19,7 @@ const CrearUsuarioComponent = ({ register, errors, rol }: d) => {
                 type="text"
                 id='primer_nombre'
                 className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
+                defaultValue={estuadiante?.primer_nombre}
                 {...register('primer_nombre', { required: `El primer nombre del ${rol.toLocaleLowerCase()} es requerido` })}
             />
             {errors.primer_nombre && <p className='text-red-500 text-sm'>{errors.primer_nombre.message}</p>}
@@ -25,6 +28,7 @@ const CrearUsuarioComponent = ({ register, errors, rol }: d) => {
                 type="text"
                 id='segundo_nombre'
                 className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
+                defaultValue={estuadiante?.segundo_nombre}
                 {...register('segundo_nombre')}
             />
 
@@ -33,6 +37,7 @@ const CrearUsuarioComponent = ({ register, errors, rol }: d) => {
                 type="text"
                 id='primer_apellido'
                 className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
+                defaultValue={estuadiante?.primer_apellido}
                 {...register('primer_apellido', { required: `El primer apellido del ${rol.toLocaleLowerCase()} es requerido` })}
             />
             {errors.primer_nombre && <p className='text-red-500 text-sm'>{errors.primer_nombre.message}</p>}
@@ -42,6 +47,7 @@ const CrearUsuarioComponent = ({ register, errors, rol }: d) => {
                 type="text"
                 id='segundo_apellido'
                 className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
+                defaultValue={estuadiante?.segundo_apellido}
                 {...register('segundo_apellido')}
             />
 
@@ -51,6 +57,7 @@ const CrearUsuarioComponent = ({ register, errors, rol }: d) => {
                 type="text"
                 id='edad'
                 className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
+                defaultValue={estuadiante?.edad}
                 {...register('edad', { required: `Le edad del ${rol.toLocaleLowerCase()} es requerida`, min: { value: 5, message: "La edad minimi debe ser mayor o igual a 5 años" } })}
             />
             {errors.edad && <p className='text-red-500 text-sm'>{errors.edad.message}</p>}
@@ -60,6 +67,7 @@ const CrearUsuarioComponent = ({ register, errors, rol }: d) => {
                 type="tel"
                 id='telefono'
                 className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
+                defaultValue={estuadiante?.telefono}
                 {...register('telefono', { required: `El telefono del ${rol} o del acudiente debe ser requerido` })}
             />
             {errors.telefono && <p className='text-red-500 text-sm'>{errors.telefono.message}</p>}
@@ -68,6 +76,7 @@ const CrearUsuarioComponent = ({ register, errors, rol }: d) => {
             <select
                 id='tipo_identificacion'
                 className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
+                defaultValue={estuadiante?.tipo_identificacion}
                 {...register('tipo_identificacion', { required: "El tipo de identificación es requerido" })}
             >
                 <option value="">--Seleccionar--</option>
@@ -80,6 +89,7 @@ const CrearUsuarioComponent = ({ register, errors, rol }: d) => {
             <input
                 type="text"
                 id='identificacion'
+                defaultValue={estuadiante?.identificacion}
                 className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
                 {...register('identificacion', { required: "El número de itentificación es requerido" })}
             />
@@ -90,6 +100,7 @@ const CrearUsuarioComponent = ({ register, errors, rol }: d) => {
                 type="email"
                 id='correo'
                 className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
+                defaultValue={estuadiante?.correo}
                 {...register('correo', {
                     required: "El correo electronico es requerido", pattern: {
                         value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
@@ -99,18 +110,24 @@ const CrearUsuarioComponent = ({ register, errors, rol }: d) => {
             />
             {errors.correo && <p className='text-red-500 text-sm'>{errors.correo.message}</p>}
 
-            <label htmlFor="contrasena" className="mb-2">Ingrese la contraseña del {rol}</label>
-            <input
-                type="password"
-                id='contrasena'
-                className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
-                {...register('contrasena', {
-                    required: `La contraseña del ${rol.toLocaleLowerCase()} es requeridad`, minLength: { value: 5, message: "La longitud minima de la contraseña debe ser minima de 5  caracteres" }, pattern: {
-                        value: /^(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z0-9!@#$%^&*(),.?":{}|<>]+$/,
-                        message: "La contraseña debe contener al menos un carácter especial"
-                    }
-                })}
-            />
+            {
+                actions == 'Crear' && <label htmlFor="contrasena" className="mb-2">Ingrese la contraseña del {rol}</label>
+            }
+            {
+                actions == 'Crear' && <input
+                    type="password"
+                    id='contrasena'
+                    className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
+                    {...register('contrasena', {
+                        required: `La contraseña del ${rol.toLocaleLowerCase()} es requeridad`, minLength: { value: 5, message: "La longitud minima de la contraseña debe ser minima de 5  caracteres" }, pattern: {
+                            value: /^(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z0-9!@#$%^&*(),.?":{}|<>]+$/,
+                            message: "La contraseña debe contener al menos un carácter especial"
+                        }
+                    })}
+                />
+            }
+
+
             {errors.contrasena && <p className='text-red-500 text-sm'>{errors.contrasena.message}</p>}
             <input
                 type="hidden"

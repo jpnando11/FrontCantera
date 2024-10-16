@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useQuery } from "react-query"
 import { listCursouno } from "../api/CursoApi";
 import { Curso } from "../types";
@@ -21,7 +21,8 @@ const CursoIncribirsePage = () => {
     return (
         <div className="w-full">
             {data?.map(curso => <ComponentCursoIncripion key={id_curso} curso={curso} />)}
-            <ListEstudiante></ListEstudiante>
+            <Link to={`/cursos/${id_curso}`} className="text-blue-400 ">Ver estudiante</Link>
+            <ListEstudiante curso={id_curso} />
         </div>
     )
 }

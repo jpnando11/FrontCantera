@@ -3,7 +3,7 @@ import ComponentCurso from "../components/ComponentCurso"
 import { useQuery } from 'react-query'
 import ComponentVacio from "../components/ComponentVacio";
 import { Curso } from "../types";
-import CardEstudiante from "../components/CardEstudiante";
+import SeccionEstudiante from "../components/SeccionEstudiante";
 
 const AdministraccionPage = () => {
     const { data, isLoading } = useQuery<Curso[]>({
@@ -14,7 +14,7 @@ const AdministraccionPage = () => {
     if (isLoading) return <p>Loading...</p>;
 
     if (data!.length <= 0) {
-        return (<ComponentVacio />)
+        return (<ComponentVacio text="No hay curso disponible por el momento" />)
     }
 
 
@@ -26,13 +26,9 @@ const AdministraccionPage = () => {
                     {data?.map(curso => <ComponentCurso key={curso.id_curso} curso={curso} />)}
                 </div>
 
-                <div className="mt-5 py-10 border-black border-t-2 grid grid-cols-5 gap-10">
-                    <CardEstudiante></CardEstudiante>
-                    <CardEstudiante></CardEstudiante>
-                    <CardEstudiante></CardEstudiante>
-                    <CardEstudiante></CardEstudiante>
-                    <CardEstudiante></CardEstudiante>
-                    <CardEstudiante></CardEstudiante>
+                <div className="mt-5 py-10 border-black border-t-2">
+                    <SeccionEstudiante />
+
                 </div>
             </div>
 

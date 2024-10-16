@@ -3,6 +3,7 @@ export interface Curso {
     nombre_curso: string;
     nivel_categorias: string;
     descripcion_curso: string;
+    maestro: number;
     costo_curso: number;
 }
 
@@ -27,8 +28,13 @@ export interface Estudiante {
 
 
 export interface Inscripciones {
-    id_Estudiante: number,
-    id_Curso: number
+    usuarioId: number,
+    cursoId: number
+}
+
+export interface IncripcionesCurso{
+    nombre_curso:string,
+    usuarios:Estudiante[]
 }
 
 
@@ -42,6 +48,5 @@ export interface Evento {
     createdAt?: string;
     updatedAt?: string;
 }
-
 
 

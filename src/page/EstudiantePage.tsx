@@ -31,7 +31,7 @@ const EstudiantePage = () => {
             <ToastContainer />
             <h1 className="font-bold text-4xl text-center text-gray-700">Registrar un estudiente</h1>
             <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col space-y-4 w-5/6 mx-auto">
-                <CrearUsuarioComponent errors={errors} register={register} rol='Estudiante' />
+                <CrearUsuarioComponent errors={errors} register={register} rol='Estudiante' actions='Crear' />
             </form>
         </div>
     )
