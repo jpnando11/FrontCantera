@@ -6,12 +6,15 @@ import { Evento } from "../types";
 export const crearEvento = async (evento: Evento) => {
     try {
         const url = "api/eventos/crearEvento";
+        console.log("Creando evento");
         const { data } = await api.post<[]>(url, evento);
+        console.log(" Evento creado con exito.");
         return data;
     } catch (error) {
         if (isAxiosError(error) && error.response) {
             throw new Error(error.response.data.error);
         }
+        console.error("Hubo un error creando el evento:", error);
     }
 }
 
