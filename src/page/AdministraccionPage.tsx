@@ -17,7 +17,6 @@ const AdministraccionPage = () => {
         return (<ComponentVacio />)
     }
 
-
     return (
         <>
             <div className="my-5 h-full w-screen pl-10">

@@ -37,6 +37,15 @@ export interface Payment {
     amount: number;
     status: string;
   }
+
+  export interface Payment {
+    id_usuario: number,
+    fecha: Date,
+    estudiante: string,
+    celular: number,
+    estado: string
+
+  }
   
 
 

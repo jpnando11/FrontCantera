@@ -12,8 +12,8 @@ const FilterButtons: React.FC<FilterButtonsProps> = ({ onFilterChange }) => {
       <button onClick={() => onFilterChange('this_month')}>Este mes</button>
       <button onClick={() => onFilterChange('last_30_days')}>Últimos 30 días</button>
       <button onClick={() => onFilterChange('custom')}>Personalizado</button>
-      <button onClick={() => onFilterChange('0-100')}>$0 - $100</button>
-      <button onClick={() => onFilterChange('100-500')}>$100 - $500</button>
+      {/* <button onClick={() => onFilterChange('0-100')}>$0 - $100</button>
+      <button onClick={() => onFilterChange('100-500')}>$100 - $500</button> */}
     </div>
   );
 };

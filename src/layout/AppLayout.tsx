@@ -64,16 +64,9 @@ const AppLayout = () => {
                         <li className="list-none">
                             <NavLink
                                 className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block font-semibold" : "py-2 ml-9 rounded-md px-3 w-full block font-semibold"}
-                                to="/reportes">
+                                to="/historial-pagos">
                                 Reportes
 
-                            </NavLink>
-                        </li>
-                        <li className="list-none">
-                            <NavLink
-                                className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block font-semibold" : "py-2 ml-9 rounded-md px-3 w-full block font-semibold"}
-                                to="/infromes">
-                                Informes
                             </NavLink>
                         </li>
                         <li className="list-none">
