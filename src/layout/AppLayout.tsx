@@ -5,13 +5,14 @@ import { useQueryClient } from "react-query";
 
 const AppLayout = () => {
     const { error, isLoading } = useAuth();
+    const queryClient = useQueryClient();
 
     if (isLoading) { return <p>Cargando</p> }
 
     if (error) {
         return <Navigate to={"/login"} />
     }
-    const queryClient = useQueryClient()
+
     const logout = () => {
         localStorage.removeItem('AUTH_TOKEN');
         queryClient.invalidateQueries({ queryKey: ['usuario'] })
@@ -57,30 +58,15 @@ const AppLayout = () => {
                         <li className="list-none">
                             <NavLink
                                 className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block font-semibold" : "py-2 ml-9 rounded-md px-3 w-full block font-semibold"}
-                                to="/pagos">
-                                Pagos
-                            </NavLink>
-                        </li>
-                        <li className="list-none">
-                            <NavLink
-                                className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block font-semibold" : "py-2 ml-9 rounded-md px-3 w-full block font-semibold"}
-                                to="/reportes">
-                                Reportes
-
-                            </NavLink>
-                        </li>
-                        <li className="list-none">
-                            <NavLink
-                                className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block font-semibold" : "py-2 ml-9 rounded-md px-3 w-full block font-semibold"}
-                                to="/infromes">
-                                Informes
-                            </NavLink>
-                        </li>
-                        <li className="list-none">
-                            <NavLink
-                                className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block font-semibold" : "py-2 ml-9 rounded-md px-3 w-full block font-semibold"}
                                 to="/usuario">
                                 Usuario
+                            </NavLink>
+                        </li>
+                        <li className="list-none">
+                            <NavLink
+                                className={({ isActive }) => isActive ? "py-2 ml-9 bg-gray-300 rounded-md px-3 w-full block font-semibold" : "py-2 ml-9 rounded-md px-3 w-full block font-semibold"}
+                                to="/maestro">
+                                Maestro
                             </NavLink>
                         </li>
                     </aside>

@@ -4,10 +4,11 @@ import { Estudiante } from '../types'
 
 interface c {
     estudiante: Estudiante,
-    setRegistro: (a: boolean) => void
+    setRegistro: (a: boolean) => void,
+    curso:any
 }
 
-const RegistroEstudiante = ({ estudiante, setRegistro }: c) => {
+const RegistroEstudiante = ({ estudiante, setRegistro, curso }: c) => {
     const { primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, edad, correo } = estudiante
 
     const { mutate } = useMutation({
@@ -28,8 +29,7 @@ const RegistroEstudiante = ({ estudiante, setRegistro }: c) => {
                 <td className="py-3 px-6 text-left">{edad}</td>
                 <td className="py-3 px-6 text-left">{correo}</td>
                 <td className="py-3 px-6 text-left">
-                    <button className=" text-gray-800 font-semibold uppercase py-1 px-3 rounded" onClick={() => { mutate({ id_Curso: 1, id_Estudiante: estudiante.id_usuario }) }}>Incribir</button>
-
+                    <button className=" text-gray-800 font-semibold uppercase py-1 px-3 rounded" onClick={() => { mutate({ cursoId: curso, usuarioId: estudiante.id_usuario }) }}>Incribir</button>
                 </td>
             </tr>
         </>

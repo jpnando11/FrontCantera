@@ -1,10 +1,15 @@
 import { useQuery } from 'react-query'
-import { listEstudiante } from '../api/EstudianteApi'
+import { listEstudiantes } from '../api/EstudianteApi'
 import { Estudiante } from '../types'
 import RegistroEstudiante from './RegistroEstudiante'
 import { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
-const ListEstudiante = () => {
+
+interface c {
+    curso:any,
+}
+
+const ListEstudiante = ({curso}:c) => {
 
     const [registro, setRegistro] = useState(false)
 
@@ -17,7 +22,7 @@ const ListEstudiante = () => {
 
     const { data, isLoading } = useQuery<Estudiante[]>({
         queryKey: ['estudiantes'],
-        queryFn: () => listEstudiante()
+        queryFn: () => listEstudiantes()
     })
     if (isLoading) return '...Loading'
 
@@ -40,7 +45,7 @@ const ListEstudiante = () => {
                     </tr>
                 </thead>
                 <tbody className="text-gray-600 text-sm font-light">
-                    {data?.map(estudiante => <RegistroEstudiante key={estudiante.id_usuario} estudiante={estudiante} setRegistro={setRegistro} />)}
+                    {data?.map(estudiante => <RegistroEstudiante key={estudiante.id_usuario} estudiante={estudiante} setRegistro={setRegistro} curso={curso}/>)}
 
                 </tbody>
             </table >

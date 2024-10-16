@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form'
-import { Curso } from '../types';
-import { useMutation } from 'react-query'
+import { Curso, Estudiante } from '../types';
+import { useMutation, useQuery } from 'react-query'
 import { crearCurso } from '../api/CursoApi';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import { getMaestro } from '../api/UsuarioApi';
 
 const RegistrarCurso = () => {
     const { handleSubmit, register, formState: { errors } } = useForm<Curso>();
@@ -22,6 +23,18 @@ const RegistrarCurso = () => {
             }
         }
     )
+
+    const { data, isLoading, error } = useQuery<Estudiante[]>({
+        queryKey: ['maestros'],
+        queryFn: getMaestro
+    });
+
+    if (isLoading) <p>Cargando...</p>
+
+    if (error) <p>Error...</p>
+
+    console.log(data);
+
 
     const onSubmit = (data: Curso) => mutate(data);
 
@@ -63,6 +76,17 @@ const RegistrarCurso = () => {
                     className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
                     {...register('descripcion_curso', { required: "La descripción del curso es requerido" })}
                 />
+                {errors.descripcion_curso && <p className='text-red-500 text-sm'>{errors.descripcion_curso.message}</p>}
+
+                <label htmlFor="descripcion" className="mb-2">Maestro</label>
+                <select
+                    id="maestro"
+                    className="bg-gray-100 border-2 rounded-md border-gray-200 p-2 outline-none"
+                    {...register('maestro', { required: "Nivel del curso es requerido" })}
+                >
+                    <option value="">--Seleccionar--</option>
+                    {data?.map(maestro => <option key={maestro.id_usuario} value={maestro.id_usuario}>{maestro.primer_nombre} {maestro.segundo_nombre} {maestro.primer_apellido}</option>)}
+                </select>
                 {errors.descripcion_curso && <p className='text-red-500 text-sm'>{errors.descripcion_curso.message}</p>}
 
                 <label htmlFor="costo" className="mb-2">Costo Mensual del Curso</label>

@@ -7,6 +7,11 @@ import RegistrarCurso from './page/RegistrarCursoPage'
 import CursoIncribirsePage from './page/CursoIncribirsePage'
 import AuthLogin from './layout/AuthLogin'
 import UsuarioPage from './page/UsuarioPage'
+import InformacionEstudiante from './page/InformacionEstudiante'
+import EditarUsuario from './page/EditarUsuario'
+import LisAllUsuarioPage from './page/LisAllUsuarioPage'
+import MaestroPage from './page/MaestroPage'
+import CursosPage from './page/CursosPage'
 
 const App = () => {
   return (
@@ -22,7 +27,12 @@ const App = () => {
             <Route path='/curso' element={<RegistrarCurso />} />
             <Route path='/estudiante' element={<EstudiantePage />} />
             <Route path='/incribir/:id_curso' element={<CursoIncribirsePage />} />
+            <Route path='/estudiante/:id_estudiante' element={<InformacionEstudiante />} />
+            <Route path='/editarEstudiante' element={<EditarUsuario />} />
             <Route path='/usuario' element={<UsuarioPage />} />
+            <Route path='/listEstudiantes' element={<LisAllUsuarioPage />} />
+            <Route path='/maestro' element={<MaestroPage />} />
+            <Route path='/cursos/:id_curso' element={<CursosPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
